@@ -1,8 +1,3 @@
-/**
- * @file component.cpp
- * @brief Implementación de la clase Component
- */
-
 #include "component.h"
 #include <QJsonObject>
 #include <QJsonDocument>
