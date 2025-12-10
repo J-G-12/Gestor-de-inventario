@@ -1,0 +1,103 @@
+/**
+ * @file component.h
+ * @brief Definición de la clase Component (Modelo de datos)
+ * @author Tu Nombre
+ * @date 2024
+ * @license MIT
+ */
+
+#ifndef COMPONENT_H
+#define COMPONENT_H
+
+#include <QString>
+#include <QDate>
+#include <QJsonObject>
+
+/**
+ * @class Component
+ * @brief Clase que representa un componente electrónico en el inventario
+ * 
+ * Esta clase encapsula todas las propiedades de un componente y proporciona
+ * métodos para serializar/deserializar los datos.
+ */
+class Component {
+public:
+    /**
+     * @brief Constructor por defecto
+     */
+    Component();
+    
+    /**
+     * @brief Constructor parametrizado
+     * @param id Identificador único del componente
+     * @param name Nombre del componente
+     * @param type Tipo/categoría del componente
+     * @param quantity Cantidad disponible
+     * @param location Ubicación física
+     * @param purchaseDate Fecha de adquisición
+     * @param description Descripción detallada (opcional)
+     * @param supplier Proveedor (opcional)
+     * @param price Precio unitario (opcional)
+     * @param serialNumber Número de serie (opcional)
+     */
+    Component(int id, const QString& name, const QString& type, int quantity,
+              const QString& location, const QDate& purchaseDate,
+              const QString& description = "", const QString& supplier = "",
+              double price = 0.0, const QString& serialNumber = "");
+    
+    // Getters
+    int getId() const { return m_id; }
+    QString getName() const { return m_name; }
+    QString getType() const { return m_type; }
+    int getQuantity() const { return m_quantity; }
+    QString getLocation() const { return m_location; }
+    QDate getPurchaseDate() const { return m_purchaseDate; }
+    QString getDescription() const { return m_description; }
+    QString getSupplier() const { return m_supplier; }
+    double getPrice() const { return m_price; }
+    QString getSerialNumber() const { return m_serialNumber; }
+    
+    // Setters
+    void setName(const QString& name) { m_name = name; }
+    void setType(const QString& type) { m_type = type; }
+    void setQuantity(int quantity) { m_quantity = quantity; }
+    void setLocation(const QString& location) { m_location = location; }
+    void setPurchaseDate(const QDate& date) { m_purchaseDate = date; }
+    void setDescription(const QString& description) { m_description = description; }
+    void setSupplier(const QString& supplier) { m_supplier = supplier; }
+    void setPrice(double price) { m_price = price; }
+    void setSerialNumber(const QString& serialNumber) { m_serialNumber = serialNumber; }
+    
+    /**
+     * @brief Convierte el componente a una cadena legible
+     * @return QString con la representación textual
+     */
+    QString toString() const;
+    
+    /**
+     * @brief Serializa el componente a formato JSON
+     * @return QJsonObject con los datos del componente
+     */
+    QJsonObject toJSON() const;
+    
+    /**
+     * @brief Deserializa un JSON a un objeto Component
+     * @param json Objeto JSON a deserializar
+     * @return Component creado a partir del JSON
+     */
+    static Component fromJSON(const QJsonObject& json);
+    
+private:
+    int m_id;                   ///< Identificador único
+    QString m_name;            ///< Nombre del componente
+    QString m_type;            ///< Tipo/categoría
+    int m_quantity;            ///< Cantidad disponible
+    QString m_location;        ///< Ubicación física
+    QDate m_purchaseDate;      ///< Fecha de adquisición
+    QString m_description;     ///< Descripción detallada
+    QString m_supplier;        ///< Proveedor
+    double m_price;            ///< Precio unitario
+    QString m_serialNumber;    ///< Número de serie único
+};
+
+#endif // COMPONENT_H
