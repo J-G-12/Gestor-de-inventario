@@ -1,10 +1,3 @@
-/**
- * @file component.h
- * @brief Clase Component que representa un componente electrónico
- * @author Tu Nombre
- * @date 2024
- */
-
 #ifndef COMPONENT_H
 #define COMPONENT_H
 
@@ -12,24 +5,12 @@
 #include <QDate>
 #include <QJsonObject>
 
-/**
- * @class Component
- * @brief Representa un componente electrónico en el inventario
- */
 class Component {
 public:
     /// Constructor por defecto
     Component();
     
-    /**
-     * @brief Constructor parametrizado
-     * @param id Identificador único
-     * @param name Nombre del componente
-     * @param type Tipo/categoría
-     * @param quantity Cantidad disponible
-     * @param location Ubicación física
-     * @param purchaseDate Fecha de adquisición
-     */
+
     Component(int id, const QString& name, const QString& type, int quantity,
               const QString& location, const QDate& purchaseDate);
     
@@ -48,23 +29,10 @@ public:
     void setLocation(const QString& location) { m_location = location; }
     void setPurchaseDate(const QDate& date) { m_purchaseDate = date; }
     
-    /**
-     * @brief Convierte el componente a cadena legible
-     * @return Representación en texto
-     */
     QString toString() const;
     
-    /**
-     * @brief Serializa a formato JSON
-     * @return Objeto JSON con datos del componente
-     */
     QJsonObject toJSON() const;
-    
-    /**
-     * @brief Crea Component desde JSON
-     * @param json Objeto JSON con datos
-     * @return Component instanciado
-     */
+
     static Component fromJSON(const QJsonObject& json);
     
 private:
